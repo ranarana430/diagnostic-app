@@ -84,18 +84,24 @@
       }
     }
 
-    function showResult() {
-      const count = {};
-      answers.forEach(a => count[a] = (count[a] || 0) + 1);
-      const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
-      const resultValue = sorted[0][0];
-      const resultLabel = choices.find(c => c.value === resultValue)?.label || "不明";
+  function showResult() {
+    const count = {};
+    answers.forEach(a => count[a] = (count[a] || 0) + 1);
+    const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
+    const resultValue = sorted[0][0];
+    const resultLabel = choices.find(c => c.value === resultValue)?.label || "不明";
 
-      document.getElementById('app').innerHTML = `
-        <h2>診断結果</h2>
-        <p>あなたのタイプは「${resultLabel}」です！</p>
-      `;
-    }
-  </script>
-</body>
-</html>
+  document.getElementById('app').innerHTML = `
+    <h2>診断結果</h2>
+    <p>あなたのタイプは「${resultLabel}」です！</p>
+    <br>
+    <button onclick="showTop()">もう一度遊ぶ</button>
+  `;
+}
+
+function showTop() {
+  document.getElementById('app').innerHTML = `
+    <p>これから10問の質問をします。</p>
+    <button onclick="start()">診断スタート</button>
+  `;
+}
