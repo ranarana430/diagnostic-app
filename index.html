@@ -25,7 +25,15 @@
       "新しいことに挑戦するのが好き？"
     ];
 
-    const choices = ["A", "B", "C", "D", "E", "F"];
+    const choices = [
+      { value: "A", label: "森夏華" },
+      { value: "B", label: "山内春奈" },
+      { value: "C", label: "荒巻宙来" },
+      { value: "D", label: "谷口聖恋" },
+      { value: "E", label: "三枝亜季" },
+      { value: "F", label: "島田杏南" }
+    ];
+
     let shuffled = [];
     let index = 0;
     let answers = [];
@@ -42,34 +50,50 @@
     }
 
     function showQuestion() {
-      if (index >= shuffled.length) {
-        showResult();
-        return;
-      }
-
       const q = shuffled[index];
-      let html = `<h2>Q${index + 1}: ${q}</h2>`;
+      let html = `<h2>Q${index + 1}: ${q}</h2><form id="form">`;
+
       choices.forEach(c => {
-        html += `<button onclick="answer('${c}')">${c}</button> `;
+        html += `
+          <label>
+            <input type="radio" name="answer" value="${c.value}"> ${c.label}
+          </label><br>`;
       });
 
+      html += `</form><br><button onclick="next()">次へ</button>`;
       document.getElementById('app').innerHTML = html;
     }
 
-    function answer(c) {
-      answers.push(c);
+    function next() {
+      const form = document.getElementById('form');
+      const data = new FormData(form);
+      const selected = data.get("answer");
+
+      if (!selected) {
+        alert("選択肢を1つ選んでください！");
+        return;
+      }
+
+      answers.push(selected);
       index++;
-      showQuestion();
+
+      if (index < shuffled.length) {
+        showQuestion();
+      } else {
+        showResult();
+      }
     }
 
     function showResult() {
       const count = {};
       answers.forEach(a => count[a] = (count[a] || 0) + 1);
       const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
-      const result = sorted[0][0];
+      const resultValue = sorted[0][0];
+      const resultLabel = choices.find(c => c.value === resultValue)?.label || "不明";
+
       document.getElementById('app').innerHTML = `
         <h2>診断結果</h2>
-        <p>あなたのタイプは「${result}」です！</p>
+        <p>あなたのタイプは「${resultLabel}」です！</p>
       `;
     }
   </script>
