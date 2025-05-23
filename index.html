@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>〇〇診断</title>
@@ -7,48 +7,70 @@
 <body>
   <h1>〇〇診断</h1>
   <div id="app">
-    <p>診断スタート！</p>
-    <button onclick="startDiagnosis()">スタート</button>
+    <p>これから10問の質問をします。</p>
+    <button onclick="start()">診断スタート</button>
   </div>
 
   <script>
     const questions = [
-      "質問1", "質問2", "質問3", "質問4", "質問5",
-      "質問6", "質問7", "質問8", "質問9", "質問10"
+      "あなたは朝型？夜型？",
+      "人と話すのが好き？",
+      "計画を立てるのが得意？",
+      "好奇心旺盛？",
+      "慎重派？それとも直感派？",
+      "リーダータイプ？",
+      "整理整頓が得意？",
+      "一人の時間が好き？",
+      "決断は早い？",
+      "新しいことに挑戦するのが好き？"
     ];
+
     const choices = ["A", "B", "C", "D", "E", "F"];
-    let current = 0;
+    let shuffled = [];
+    let index = 0;
     let answers = [];
 
-    function startDiagnosis() {
-      current = 0;
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function start() {
+      shuffled = shuffle([...questions]);
+      index = 0;
       answers = [];
       showQuestion();
     }
 
     function showQuestion() {
-      if (current >= questions.length) {
+      if (index >= shuffled.length) {
         showResult();
         return;
       }
-      let html = `<h2>${questions[current]}</h2>`;
+
+      const q = shuffled[index];
+      let html = `<h2>Q${index + 1}: ${q}</h2>`;
       choices.forEach(c => {
-        html += `<button onclick="answer('${c}')">${c}</button>`;
+        html += `<button onclick="answer('${c}')">${c}</button> `;
       });
+
       document.getElementById('app').innerHTML = html;
     }
 
     function answer(c) {
       answers.push(c);
-      current++;
+      index++;
       showQuestion();
     }
 
     function showResult() {
       const count = {};
       answers.forEach(a => count[a] = (count[a] || 0) + 1);
-      const result = Object.entries(count).sort((a,b) => b[1]-a[1])[0][0];
-      document.getElementById('app').innerHTML = `<h2>診断結果</h2><p>あなたのタイプは「${result}」です！</p>`;
+      const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
+      const result = sorted[0][0];
+      document.getElementById('app').innerHTML = `
+        <h2>診断結果</h2>
+        <p>あなたのタイプは「${result}」です！</p>
+      `;
     }
   </script>
 </body>
