@@ -1,83 +1,55 @@
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>〇〇診断</title>
+</head>
+<body>
+  <h1>〇〇診断</h1>
+  <div id="app">
+    <p>診断スタート！</p>
+    <button onclick="startDiagnosis()">スタート</button>
+  </div>
 
-const questions = [
-  { id: 1, text: "質問1" },
-  { id: 2, text: "質問2" },
-  { id: 3, text: "質問3" },
-  { id: 4, text: "質問4" },
-  { id: 5, text: "質問5" },
-  { id: 6, text: "質問6" },
-  { id: 7, text: "質問7" },
-  { id: 8, text: "質問8" },
-  { id: 9, text: "質問9" },
-  { id: 10, text: "質問10" },
-];
+  <script>
+    const questions = [
+      "質問1", "質問2", "質問3", "質問4", "質問5",
+      "質問6", "質問7", "質問8", "質問9", "質問10"
+    ];
+    const choices = ["A", "B", "C", "D", "E", "F"];
+    let current = 0;
+    let answers = [];
 
-const choices = ['A', 'B', 'C', 'D', 'E', 'F'];
-
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
-
-export default function DiagnosticApp() {
-  const [page, setPage] = useState('top');
-  const [shuffledQuestions, setShuffledQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
-
-  const startDiagnosis = () => {
-    setShuffledQuestions(shuffle([...questions]));
-    setCurrentIndex(0);
-    setAnswers([]);
-    setPage('diagnosis');
-  };
-
-  const answerQuestion = (choice) => {
-    setAnswers([...answers, choice]);
-    if (currentIndex + 1 < shuffledQuestions.length) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setPage('result');
+    function startDiagnosis() {
+      current = 0;
+      answers = [];
+      showQuestion();
     }
-  };
 
-  const getResult = () => {
-    const count = {};
-    answers.forEach(a => { count[a] = (count[a] || 0) + 1; });
-    return Object.entries(count).sort((a, b) => b[1] - a[1])[0][0];
-  };
+    function showQuestion() {
+      if (current >= questions.length) {
+        showResult();
+        return;
+      }
+      let html = `<h2>${questions[current]}</h2>`;
+      choices.forEach(c => {
+        html += `<button onclick="answer('${c}')">${c}</button>`;
+      });
+      document.getElementById('app').innerHTML = html;
+    }
 
-  return (
-    <div className="p-8 max-w-xl mx-auto">
-      {page === 'top' && (
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">〇〇診断</h1>
-          <div className="mb-4">[トップ画像]</div>
-          <p className="mb-6">これは〇〇診断です。10問の質問に答えてあなたのタイプを診断します。</p>
-          <Button onClick={startDiagnosis}>診断をスタート</Button>
-        </div>
-      )}
+    function answer(c) {
+      answers.push(c);
+      current++;
+      showQuestion();
+    }
 
-      {page === 'diagnosis' && (
-        <div>
-          <h2 className="text-xl font-semibold mb-4">{shuffledQuestions[currentIndex].text}</h2>
-          <div className="space-y-2">
-            {choices.map(choice => (
-              <Button key={choice} onClick={() => answerQuestion(choice)}>
-                {choice}
-              </Button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {page === 'result' && (
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">診断結果</h2>
-          <p className="text-lg">あなたのタイプは「{getResult()}」です！</p>
-        </div>
-      )}
-    </div>
-  );
-}
+    function showResult() {
+      const count = {};
+      answers.forEach(a => count[a] = (count[a] || 0) + 1);
+      const result = Object.entries(count).sort((a,b) => b[1]-a[1])[0][0];
+      document.getElementById('app').innerHTML = `<h2>診断結果</h2><p>あなたのタイプは「${result}」です！</p>`;
+    }
+  </script>
+</body>
+</html>
