@@ -35,21 +35,22 @@
       100% { transform: translateX(-100%); }
     }
     @keyframes memberColorLoop {
-      0%   { color: #FFE500; }   /*島田杏奈(黄)*/
-      17%  { color: #F79428; }   /*三枝亜季（橙）*/
-      34%  { color: #EC008C; }   /*荒巻宙来（桃）*/
+      0%   { color: #FFE500; }   /* 島田杏南（黄） */
+      17%  { color: #F79428; }   /* 三枝亜季（橙） */
+      34%  { color: #EC008C; }   /* 荒巻宙来（桃） */
       51%  { color: #F0F8FF; }   /* 谷口聖恋（白） */
       68%  { color: #235BC8; }   /* 森夏華（青） */
       85%  { color: #00B16B; }   /* 山内春奈（緑） */
       100% { color: #FFE500; }   /* 戻る */
     }
-
+    
     .rainbow-title{
       animation: memberColorLoop 6s linear infinite;
       font-size: 2em;
       font-weight: bold;
       margin-top: 40px;
       text-shadow: 1px 1px 2px white, 0 0 10px #fff4f8;
+      color: #FFE500; /* 初期カラー指定（大事！） */
     }
     
     .button-container {
