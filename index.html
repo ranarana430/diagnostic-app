@@ -14,6 +14,14 @@
       font-size: 2em;
       margin-top: 40px;
     }
+    .marquee-wrapper {
+      width: 100%;
+      overflow: hidden;
+      background-color: white;
+      padding: 8px 0;
+      box-shadow: 0 0 5px #ccc;
+      margin: 20px 0;
+    }
     .marquee {
       display: inline-block;
       white-space: nowrap;
@@ -51,9 +59,11 @@
 <body>
   <h1>☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</h1>
 
+<div class="marquee-wrapper">
   <div class="marquee">
     エンタテ！区スタッフが作った、ファンメイドなめたセンの応援ページだょ❤
   </div>
+</div>
 
   <br><br>
   <p>あなたは <span id="counter">...</span> 人目の訪問者です。</p>
