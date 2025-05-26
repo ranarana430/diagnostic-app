@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</title>
+  <title>☆;.+*:ﾟ+｡.☆;.+*めたセン診断のほ～むぺ～じ*+.;☆.。+゜:*+.;☆</title>
   <style>
     body {
       background-color: #F9C1CF;
@@ -34,6 +34,24 @@
       0% { transform: translateX(0%); }
       100% { transform: translateX(-100%); }
     }
+    @keyframes memberColorLoop {
+      0%   { color: #FFE500; }   /*島田杏奈(黄)*/
+      17%  { color: #F79428; }   /*三枝亜季（橙）*/
+      34%  { color: #EC008C; }   /*荒巻宙来（桃）*/
+      51%  { color: #F0F8FF; }   /* 谷口聖恋（白） */
+      68%  { color: #235BC8; }   /* 森夏華（青） */
+      85%  { color: #00B16B; }   /* 山内春奈（緑） */
+      100% { color: #FFE500; }   /* 戻る */
+    }
+
+    .rainbow-titeke{
+      animation: memberColorLoop 6s linear infinite;
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 40px;
+      text-shadow: 1px 1px 2px white, 0 0 10px #fff4f8;
+    }
+    
     .button-container {
       margin-top: 30px;
     }
@@ -57,7 +75,7 @@
   </style>
 </head>
 <body>
-  <h1>☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</h1>
+  <h1 class="rainbow-title">☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</h1>
 
 <div class="marquee-wrapper">
   <div class="marquee">
