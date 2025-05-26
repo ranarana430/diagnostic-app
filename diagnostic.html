@@ -3,12 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>めたセンメンバー診断</title>
+  <style>
+    body {
+      margin: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        #FFE500 0px,
+        #FFE500 60px,
+        #F79428 60px,
+        #F79428 120px,
+        #EC008C 120px,
+        #EC008C 180px,
+        #F0F8FF 180px,
+        #F0F8FF 240px,
+        #235BC8 240px,
+        #235BC8 300px,
+        #00B16B 300px,
+        #00B16B 360px
+      );
+      background-size: 100% 360px;
+      font-family: "MS PGothic", sans-serif;
+      color: #000;
+      text-align: center;
+    }
+
+    #app {
+      background-color: rgba(255, 255, 255, 0.85);
+      margin: 50px auto;
+      padding: 30px;
+      max-width: 700px;
+      border-radius: 12px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-top: 30px;
+    }
+
+    button {
+      background-color: #EC008C;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d0007b;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    form {
+      text-align: left;
+      margin: 20px 0;
+    }
+  </style>
 </head>
 <body>
   <h1>めたセンメンバー診断</h1>
   <div id="app">
     <p>あなたはめたセンのメンバーだと誰タイプ？<br>めたセンのメンバーをChatGPTに学習させてインタビュー✨<br>めたセンのメンバーになったつもりで答えてね🌟</p>
+    
     <button onclick="start()">診断スタート</button>
+    <br>
+    <button onclick="location.href='index.html'">TOPへ戻る</button>
   </div>
 
   <script>
@@ -178,7 +244,7 @@
       const selected = data.get("answer");
 
       if (!selected) {
-        alert("選択肢を1つ選んでください！");
+        alert("選択肢を1つ選んでね！");
         return;
       }
 
@@ -203,6 +269,8 @@
         <p>あなたのタイプは「${result}」です！</p>
         <br>
         <button onclick="showTop()">もう一度遊ぶ</button>
+        <br>
+        <button onclick="location.href='index.html'">TOPへ戻る</button>
       `;
     }
 
