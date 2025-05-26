@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</title>
+  <style>
+    body {
+      background-color: #F9C1CF;
+      color: #EC008C;
+      font-family: "MS PGothic", sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-top: 40px;
+    }
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      animation: marquee 12s linear infinite;
+      width: 100%;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .button-container {
+      margin-top: 30px;
+    }
+    button {
+      background-color: #EC008C;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d0007b;
+    }
+    #app img {
+      max-width: 80%;
+      height: auto;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>☆;.+*:ﾟ+｡.☆;.+*めたセンのほ～むぺ～じ*+.;☆.。+゜:*+.;☆</h1>
+
+  <div class="marquee">
+    エンタテ！区スタッフが作った、ファンメイドなめたセンの応援ページだょ❤
+  </div>
+
+  <br><br>
+  <p>あなたは <span id="counter">...</span> 人目の訪問者です。</p>
+
+  <div id="app">
+    <img src="めたセン.png" alt="めたセン">
+    <p>キリ番踏み逃げ厳禁⚠ カキコよろ☆</p>
+
+    <div class="button-container">
+      <button onclick="alert('☆工事中☆')">メンバー紹介</button>
+      <button onclick="alert('☆工事中☆')">BBS</button>
+      <button onclick="startDiagnostic()">めたセン診断</button>
+      <button onclick="alert('☆工事中☆')">相互リンク</button>
+    </div>
+  </div>
+
+  <script>
+    // アクセスカウンター (仮: ローカルStorageを使った簡易版)
+    let count = localStorage.getItem('visitCount');
+    count = count ? parseInt(count) + 1 : 1;
+    localStorage.setItem('visitCount', count);
+    document.getElementById('counter').innerText = count;
+
+    function startDiagnostic() {
+      window.location.href = "diagnostic.html";
+    }
+  </script>
+</body>
+</html>
