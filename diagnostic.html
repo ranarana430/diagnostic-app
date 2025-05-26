@@ -70,8 +70,10 @@
 <body>
   <h1>めたセンメンバー診断</h1>
   <div id="app">
-    <p>あなたはめたセンのメンバーだと誰タイプ？<br>めたセンのメンバーをChatGPTに学習させてインタビュー✨<br>めたセンのメンバーになったつもりで答えてね🌟</p>
-    
+    <p>あなたはめたセンのメンバーだと誰タイプ？<br>
+    ChatGPTに学習させたメンバーのインタビューをもとに、<br>
+    めたセンの一員になったつもりで答えてね🌟</p>
+
     <button onclick="start()">診断スタート</button>
     <br>
     <button onclick="location.href='index.html'">TOPへ戻る</button>
@@ -231,7 +233,7 @@
       let html = `<h2>Q${index + 1}: ${q.text}</h2><form id="form">`;
 
       for (let key in q.choices) {
-        html += `<label><input type="radio" name="answer" value="${key}"> ${q.choices[key]}</label><br>`;
+        html += `<label><input type="radio" name="answer" value="${key}"> ${q.choices[key]}</label>`;
       }
 
       html += `</form><br><button onclick="next()">次へ</button>`;
@@ -244,7 +246,7 @@
       const selected = data.get("answer");
 
       if (!selected) {
-        alert("選択肢を1つ選んでね！");
+        alert("選択肢を1つ選んでください！");
         return;
       }
 
@@ -278,6 +280,8 @@
       document.getElementById('app').innerHTML = `
         <p>これから10問の質問をします。</p>
         <button onclick="start()">診断スタート</button>
+        <br>
+        <button onclick="location.href='index.html'">TOPへ戻る</button>
       `;
     }
   </script>
