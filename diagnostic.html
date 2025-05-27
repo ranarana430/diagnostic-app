@@ -58,26 +58,47 @@
 
     label {
       display: block;
-      margin: 10px 0;
-      text-align: left;
+      margin-bottom: 1.2em;
+      padding-left: 1.6em;
+      text-indent: -1.6em;
+      line-height: 1.7;
+      font-size: 1em;
+      word-break: break-word;
     }
 
-    form {
-      text-align: left;
-      margin: 20px 0;
+    input[type="radio"] {
+      vertical-align: middle;
+      margin-right: 0.4em;
+      transform: scale(1.2); /* ラジオボタン拡大 */
     }
+
+    /* モバイル調整 */
+
+    
     @media (max-width: 480px) {
       #app {
         margin: 20px 10px;
         padding: 30px 15px;
         max-width: 95%;
       }
+      label {
+        padding-left: 1.2em;
+        text-indent: -1.2em;
+        font-size: 0.95em;
+        line-height: 1.6;
+      }
+
       
       h1 {
         font-size: 6vw; /* スマホ横幅に比例して調整 */
         margin-bottom: 0.5em;
         font-weight: 900;
         line-height: 1.3em;
+      }
+      
+      input[type="radio"] {
+        transform: scale(1.1); /* モバイルでは少し控えめに */
+        margin-right: 0.3em;
       }
       
       p {
