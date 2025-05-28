@@ -172,6 +172,7 @@
       }
 
       .question-text {
+        text-align: left;
         font-size: 4.5vw;
         margin-bottom: 5vw
       }
@@ -193,7 +194,7 @@
       
       .description-text {
         text-align: left;
-        line-height: 1.8;
+        line-height: 5vw;
         font-size: 4vw;
         margin-top: 1em;
         white-space: pre-wrap; /* 改行が<br>で入っていてもOK */
@@ -578,7 +579,7 @@
       const q = shuffled[index];
       let html = `
         <div class="question-block">
-          <div class="question-number">Q${index + 1}</div>
+          <div class="question-number">"Question"+${index + 1}</div>
           <h2 class="question-text">${q.text}</h2>
           <form id="form">`;
 
