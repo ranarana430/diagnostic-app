@@ -325,7 +325,6 @@
           <div class="question-number">Q${index + 1}</div>
           <h2 class="question-text">${q.text}</h2>
           <form id="form">`;
-      `;
 
       for (let key in q.choices) {
         html += `<label><input type="radio" name="answer" value="${key}"> ${q.choices[key]}</label>`;
