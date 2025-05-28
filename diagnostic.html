@@ -42,7 +42,15 @@
       font-size: 2em;
       margin-top: 30px;
     }
-
+    
+    h2 {
+      font-size: 22px;
+      margin-bottom: 1em;
+      margin-top: 0.5em;
+      text-align: center;
+      line-height: 1.5;
+    }
+    
     button {
       background-color: #EC008C;
       color: white;
@@ -67,6 +75,23 @@
       text-align: left;
     }
 
+    .question-block {
+      text-align: left;
+      margin-bottom: 1em;
+    }
+
+    .question-number {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 0.3em;
+    }
+
+    .question-text {
+      font-size: 1.1em;
+      margin: 0;
+      line-height: 1.5;
+    }
+
     input[type="radio"] {
       vertical-align: middle;
       margin-right: 0.4em;
@@ -74,14 +99,13 @@
     }
 
     /* モバイル調整 */
-
-    
     @media (max-width: 480px) {
       #app {
         margin: 20px 10px;
         padding: 30px 15px;
         max-width: 95%;
       }
+      
       label {
         display: flex;
         align-items: center;
@@ -91,12 +115,17 @@
         text-align: left;
       }
 
-      
       h1 {
         font-size: 6vw; /* スマホ横幅に比例して調整 */
         margin-bottom: 0.5em;
         font-weight: 900;
         line-height: 1.3em;
+      }
+
+      h2 {
+        font-size: 5.5vw; /* スマホ画面の横幅に応じて文字サイズ調整 */
+        margin-bottom: 1em;
+        line-height: 1.5;
       }
       
       input[type="radio"] {
@@ -113,6 +142,14 @@
         font-size: 4.5vw;
         padding: 14px 24px;
         margin: 12px 0;
+      }
+
+      .question-number {
+        font-size: 4.8vw;
+      }
+
+      .question-text {
+        font-size: 4.5vw;
       }
     }
   </style>
@@ -283,7 +320,13 @@
 
     function showQuestion() {
       const q = shuffled[index];
-      let html = `<h2>Q${index + 1}: ${q.text}</h2><form id="form">`;
+      let html = `
+        <div class="question-block">
+          <div class="question-number">Q${index + 1}</div>
+          <h2>Q${index + 1}: ${q.text}</h2><form id="form">`;
+        </div>
+        <form id="form">
+      `;
 
       for (let key in q.choices) {
         html += `<label><input type="radio" name="answer" value="${key}"> ${q.choices[key]}</label>`;
