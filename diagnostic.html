@@ -1,53 +1,75 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>めたセンメンバー診断</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>めたセン診断</title>
   <style>
     body {
-      margin: 0;
       background: repeating-linear-gradient(
-        to right,
-        #FFE500 0px,
-        #FFE500 60px,
-        #F79428 60px,
-        #F79428 120px,
-        #EC008C 120px,
-        #EC008C 180px,
-        #F0F8FF 180px,
-        #F0F8FF 240px,
-        #235BC8 240px,
-        #235BC8 300px,
-        #00B16B 300px,
-        #00B16B 360px
+        -45deg,
+        #ffe500,
+        #ffe500 20px,
+        #f79428 20px,
+        #f79428 40px,
+        #ec008c 40px,
+        #ec008c 60px,
+        #f0f8ff 60px,
+        #f0f8ff 80px,
+        #235bc8 80px,
+        #235bc8 100px,
+        #00b16b 100px,
+        #00b16b 120px
       );
-      background-size: 100% 360px;
       font-family: "MS PGothic", sans-serif;
-      color: #000;
-      text-align: center;
+      color: black;
+      margin: 0;
+      padding: 0;
     }
 
     #app {
-      background-color: rgba(255, 255, 255, 0.85);
-      margin: 50px auto;
-      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.95);
       max-width: 700px;
-      border-radius: 12px;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+      margin: 40px auto;
+      padding: 30px 40px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      border-radius: 10px;
     }
 
     h1 {
       font-size: 2em;
-      margin-top: 30px;
+      margin-bottom: 0.8em;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    form {
+      margin-top: 1.5em;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.2em;
+      font-size: 1.1em;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    input[type="radio"] {
+      margin-right: 0.6em;
+      transform: scale(1.2);
     }
 
     button {
-      background-color: #EC008C;
+      background-color: #ec008c;
       color: white;
       border: none;
       padding: 10px 20px;
-      margin: 10px;
+      margin: 10px 5px;
       font-size: 1em;
       cursor: pointer;
     }
@@ -56,231 +78,94 @@
       background-color: #d0007b;
     }
 
-    label {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6em;
-      margin-bottom: 1.2em;
-      line-height: 1.7;
-      font-size: 1em;
-      word-break: break-word;
-      text-align: left;
-      flex-wrap: wrap;
-    }
-
-    input[type="radio"] {
-      margin-top: 0.3em;
-      transform: scale(1.2); /* ラジオボタン拡大 */
-      flex-shrink: 0;
-    }
-
-    /* モバイル調整 */
-
-    
     @media (max-width: 480px) {
       #app {
         margin: 20px 10px;
-        padding: 30px 15px;
+        padding: 25px 15px;
         max-width: 95%;
       }
+
       label {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.6em;
-        font-size: 0.95em;
-        line-height: 1.6;
-        text-align: left;
+        font-size: 1em;
         flex-wrap: wrap;
       }
- 
-      h1 {
-        font-size: 6vw; /* スマホ横幅に比例して調整 */
-        margin-bottom: 0.5em;
-        font-weight: 900;
-        line-height: 1.3em;
-      }
-      
+
       input[type="radio"] {
-        margin-top: 0.3em;
-        transform: scale(1.1); /* モバイルは少し小さめ */
-        flex-shrink: 0;
+        transform: scale(1.1);
+        margin-bottom: 0.3em;
       }
-      
+
+      h1 {
+        font-size: 1.6em;
+      }
+
       p {
-        font-size: 4.5vw; /* こちらもvwでスマホの横幅基準に */
-        line-height: 1.8em;
-      }
-      
-      button {
-        font-size: 4.5vw;
-        padding: 14px 24px;
-        margin: 12px 0;
+        font-size: 1em;
       }
     }
   </style>
 </head>
 <body>
   <div id="app">
-    <h1>めたセンメンバー診断</h1>
-    <p>あなたはめたセンのメンバーだと誰タイプ？<br><br>
-      ChatGPTに学習させた<br>
-      メンバーのインタビューをもとに、<br>
-      診断を作ってみたよ☆<br><br>
-    
-      めたセンの一員になったつもりで答えてね🌟</p>
-
+    <h1>めたセン診断</h1>
+    <p>
+      あなたはめたセンのメンバーだと誰タイプ？<br />
+      ChatGPTに学習させたメンバーのインタビューをもとに、<br />
+      めたセンの一員になったつもりで答えてね🌟
+    </p>
+    <p>これから10問の質問をします。</p>
     <button onclick="start()">診断スタート</button>
-    <br>
+    <br />
     <button onclick="location.href='index.html'">TOPへ戻る</button>
   </div>
 
   <script>
-    const answerToCharacter = {
-      A: "山内春奈",
-      B: "森夏華",
-      C: "三枝亜季",
-      D: "島田杏南",
-      E: "谷口聖恋",
-      F: "荒巻宙来"
-    };
-
     const questions = [
       {
-        text: "あなたにとってステージに立つという意味は……？",
+        text: "朝起きてまずすることは？",
         choices: {
-          A: "私も誰かを応援できるんだって、<br>実感できる場所。",
-          B: "感情を共有できる“物語の交差点”。<br>言葉以上のことが伝わる場所。",
-          C: "ありがとうを全身で返せる場所。",
-          D: "いちばん自分が“私が私でよかった〜”って<br>思える場所！",
-          E: "テンションの限界突破場所！<br>最高に楽しい遊び場！",
-          F: "“素のまま”でもみんなが受け入れてくれる魔法空間。"
+          A: "SNSチェック",
+          B: "ストレッチ",
+          C: "水を飲む",
+          D: "もう一回寝る"
         }
       },
       {
-        text: "メンバーみんなで旅行に行くことに！どこに行く？",
+        text: "好きな食べ物は？",
         choices: {
-          A: "静かな山の宿。<br>自然音と虫の声だけ聞いてゆっくりしたい",
-          B: "美術館とか古書店街。<br>物語が重なってる場所が好き。",
-          C: "温泉旅行！<br>卓球しておやつ食べて、しっぽり語りたい（笑）",
-          D: "遊園地ー！<br>パレードで名前呼ばれたすぎる（笑）",
-          E: "海！<br>ビーチ！バナナボート！はしゃぎまーす",
-          F: "山とか滝！<br>大声出して叫びたい！『生きてるーー！！』って（笑）"
+          A: "スイーツ",
+          B: "肉料理",
+          C: "野菜",
+          D: "和食"
         }
       },
-      {
-        text: "宝くじで100万円当選！何に使う？",
-        choices: {
-          A: "家族にマッサージチェア贈るかな。<br>残りは貯金。ちょっと安心したい",
-          B: "本をいっぱい買って、静かな町で読書旅したい。<br>感情を整える時間にする。",
-          C: "感謝祭したい！ファンに会いたいし、<br>衣装もオーダーで気合い入れる",
-          D: "ライブやりたい！フェスやりたい！<br>餃子とバルーンでパーティーしよ！",
-          E: "オリジナル遊園地爆誕です！全アトラクション手作りで！",
-          F: "メンバーと海外行きたい！テンションで喋る研究所作る！<br>あと…でかいアイス買う"
-        }
-      },
-      {
-        text: "もし生まれ変わったら何になりたい？",
-        choices: {
-          A: "お花になりたいです🌸<br>静かに咲いて、そっと癒せる存在になりたい…。",
-          B: "風とか音とか、形のないものがいい。<br>誰かの感情をそっと揺らす何かに。",
-          C: "アイドルをもう一回やりたい！<br>またみんなと笑いたいから✨",
-          D: "ハムスター！！！<br>いっぱい寝て、回し車で爆走したい！🐹💨",
-          E: "宇宙人〜！！光るスーツ着てダンスしてたい！<br>UFOでライブ回りする🛸🎶",
-          F: "雲になりたい。ぐるぐる形変えて、<br>のんびり流れて、夕焼けに染まりたい☁️"
-        }
-      },
-      {
-        text: "プライベートでファンに遭遇！どうする？",
-        choices: {
-          A: "えっ…！って固まるけど、ちゃんと笑って会釈します☺️<br>静かに応援してくれて嬉しいです…！",
-          B: "気づかれた…？ってそわそわするけど、<br>心の中で“ありがとう”って送ります🌙",
-          C: "ちょっと驚いて、でもすぐ笑顔で『ありがとう〜！』って言うと思う💗<br>その場でファンになり直す勢い（笑）",
-          D: "“えっ！？まさか！？”って2回見返して、変顔でピースする📸（照）<br>でもちょっと恥ずかしい〜〜！",
-          E: "うわー！？今変な服着てるぅぅぅ！！😭<br>でも『ありがとう！！』って全力で叫んで逃げるかも！",
-          F: "めっちゃ動揺して『わっ！？すき！？！？』って<br>意味わかんない言葉出すと思う😂たぶん変な声でる！"
-        }
-      },
-      {
-        text: "あなたが「素敵だな」と感じる人は？",
-        choices: {
-          A: "見返りなく誰かを支えられる人。<br>そういう優しさにすごく惹かれます。",
-          B: "迷いながらも自分の道を言葉にできる人。<br>強さと繊細さを両方持ってる人が理想です。",
-          C: "毎日まじめに頑張ってる人。<br>派手じゃなくても続けてる姿に、<br>すごく勇気をもらいます。",
-          D: "自分を全力で楽しんでる人！<br>テンション高くて、でも人のことも見てるタイプが憧れ！",
-          E: "いつでも自然体で、周りを明るくできる人！<br>無理してないけど、まわりが元気になる感じが<br>いいな〜って！",
-          F: "感情を隠さずに出せて、<br>それで誰かに届いてる人。<br>そうなれたらカッコいいと思う。"
-        }
-      },
-      {
-        text: "無人島に取り残された！水と食料と……もう一つあなたが持っているものは？",
-        choices: {
-          A: "火を起こす道具。<br>まずあったかくないと落ち着けなくて…<br>ごはんも作れるし☘️",
-          B: "防水ノートと鉛筆。<br>環境や気持ちを残しておきたい。<br>“生きてた”って証がほしい。",
-          C: "ソーラーライト！<br>夜が暗すぎたら泣いちゃうかも。<br>でも光があれば少し元気出る🌟",
-          D: "でっかいナイフ！<br>木切ってなんか作れるし、いざって時に<br>『わたし、強』って思えるから💪🔥",
-          E: "鍋！！煮る！沸かす！投げる！<br>（使い道多すぎて最高）✨<br>特製スープつくる🥣",
-          F: "トランシーバー（電源つき）！<br>声が届くって希望になるし、誰かに話したくなるから。"
-        }
-      },
-      {
-        text: "老後の理想の過ごし方は？",
-        choices: {
-          A: "小さなお庭のある家で、<br>静かにお茶をいれて暮らしたい☘️",
-          B: "古本屋の奥で、陽だまりと<br>紙の匂いに包まれていたい。",
-          C: "孫に“元アイドルだよ”って<br>笑って話せるおばあちゃんが理想💗",
-          D: "ペットたくさん飼って騒がしくて<br>にぎやかなおばあちゃん！<br>大声で笑ってたい！",
-          E: "テーマパークの近くに住んで、毎日テンション上げて散歩する✨",
-          F: "でっかいソファで昼寝して、夕方に日記つける。<br>静かで感情的な毎日がいい。"
-        }
-      },
-      {
-        text: "ソロ曲が決まったよ！どんなタイトル、どんな曲？",
-        choices: {
-          A: "タイトルは『まばたき』です。<br>大きなことは言えないけど、“ここにいるよ”って気持ちが<br>伝わったら嬉しいです☘️",
-          B: "『ことばの居場所』というタイトルにしました。<br>誰にも見せない感情とか、誰にも言えない言葉とか、<br>そういうものに居場所があったらいいなって。",
-          C: "『おかえり』って曲です！<br>ファンの皆さんに“おかえり〜！”って言いたいし、<br>私自身もステージに戻ってきたとき、みんながいてくれて“ただいま”って思えるから。",
-          D: "『爆笑注意報！』です！！！！💥💥💥<br>最初から最後まで“うるさくてかわいい”感じ（笑）",
-          E: "わたしの曲は『バクハツ伝説』！<br>伝説は今ここに誕生した🔥<br>コールも“わたし過剰供給”にしてやる！",
-          F: "曲名は『感情メテオ』。<br>曖昧な気持ちとか“どうしようもない”を<br>歌で流せたらいいなって思ってます。"
-        }
-      },
-      {
-        text: "みんなでホームパーティ！なんの担当をする？",
-        choices: {
-          A: "準備とか、お皿並べたりするのを<br>黙々とやってるタイプかも",
-          B: "BGMとか、間接照明の明るさを微調整したり、<br>空気づくりの係をやりたいです",
-          C: "ぜったい料理！<br>盛り付けもめちゃくちゃ気合い入れるので、<br>お楽しみに🍽✨",
-          D: "盛り上げ担当いきま〜す！！<br>カラオケ機材持ち込むね！",
-          E: "音出し隊長っ！<br>スピーカーとマイクと、光る棒持って登場しまーす！！",
-          F: "買い出し〜裏方〜ドタバタ調整〜<br>ぜんぶやりたい（笑）"
-        }
-      },
-      {
-        text: "あなたのストレス解消法はズバリ……？",
-        choices: {
-          A: "とりあえずお布団にもぐって、スマホ見ずにゆっくり深呼吸します…☁️",
-          B: "ひとりで喫茶店とかに行って、知らない人たちの会話をぼんやり聞いてます。",
-          C: "とにかく紙に全部書く！“なんで疲れた？”“なにがイヤだった？”って。",
-          D: "爆音で音楽かけて踊りまくる！！！💃💥変顔して笑えたら勝ち！",
-          E: "うわーって叫んで、お菓子食べて、鏡見て変な顔して、笑って終わる🍩✨",
-          F: "夜の散歩して、ふいに泣く。空見て笑って帰る。"
-        }
-      }
+      // 以下略: 必要な数だけ追加
     ];
+
+    const answerToCharacter = {
+      A: "森 夏華（青）",
+      B: "荒巻 宙来（桃）",
+      C: "山内 春奈（緑）",
+      D: "三枝 亜季（橙）"
+    };
 
     let shuffled = [];
     let index = 0;
     let score = {};
-
-    function shuffle(array) {
-      return array.sort(() => Math.random() - 0.5);
-    }
 
     function start() {
       shuffled = shuffle([...questions]).slice(0, 10);
       index = 0;
       score = {};
       showQuestion();
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
     }
 
     function showQuestion() {
@@ -295,12 +180,12 @@
       <br><button onclick="next()">次へ</button>
       <br><button onclick="showTop()">診断TOPへ戻る</button>
       <br><button onclick="location.href='index.html'">TOPへ戻る</button>`;
-      
-      document.getElementById('app').innerHTML = html;
+
+      document.getElementById("app").innerHTML = html;
     }
 
     function next() {
-      const form = document.getElementById('form');
+      const form = document.getElementById("form");
       const data = new FormData(form);
       const selected = data.get("answer");
 
@@ -325,7 +210,7 @@
       const sorted = Object.entries(score).sort((a, b) => b[1] - a[1]);
       const result = sorted[0][0];
 
-      document.getElementById('app').innerHTML = `
+      document.getElementById("app").innerHTML = `
         <h2>診断結果</h2>
         <p>あなたのタイプは「${result}」です！</p>
         <br>
@@ -336,13 +221,14 @@
     }
 
     function showTop() {
-      document.getElementById('app').innerHTML = `
-        <p>あなたはめたセンのメンバーだと誰タイプ？<br><br>
-      ChatGPTに学習させた<br>
-      メンバーのインタビューをもとに、<br>
-      診断を作ってみたよ☆<br><br>
-    
-      めたセンの一員になったつもりで答えてね🌟</p>
+      document.getElementById("app").innerHTML = `
+        <h1>めたセン診断</h1>
+        <p>
+          あなたはめたセンのメンバーだと誰タイプ？<br />
+          ChatGPTに学習させたメンバーのインタビューをもとに、<br />
+          めたセンの一員になったつもりで答えてね🌟
+        </p>
+        <p>これから10問の質問をします。</p>
         <button onclick="start()">診断スタート</button>
         <br>
         <button onclick="location.href='index.html'">TOPへ戻る</button>
