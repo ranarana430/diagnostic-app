@@ -107,6 +107,20 @@
       margin: 0.5em;
     }
 
+    .result-title {
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .description-text {
+      text-align: left;
+      line-height: 1.8;
+      font-size: 1em;
+      margin-top: 1em;
+      white-space: pre-wrap; /* 改行が<br>で入っていてもOK */
+    }
+
     /* モバイル調整 */
     @media (max-width: 480px) {
       #app {
@@ -169,6 +183,20 @@
       
       .button-group button {
         margin: 0.5em;
+      }
+
+      .result-title {
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      
+      .description-text {
+        text-align: left;
+        line-height: 1.8;
+        font-size: 4vw;
+        margin-top: 1em;
+        white-space: pre-wrap; /* 改行が<br>で入っていてもOK */
       }
     }
   </style>
@@ -438,7 +466,7 @@
       document.getElementById('app').innerHTML = `
         <h2>診断結果</h2>
         <p>あなたのタイプは「${result}」です！</p>
-        <p>${description}</p>
+        <p class="description-text">${characterDescriptions[result]}</p>
         <br>
         <button onclick="showTop()">もう一度遊ぶ</button>
         <br>
