@@ -57,11 +57,10 @@
     }
 
     label {
-      display: block;
+      display: flex;
+      align-items: center; /* 上下中央揃え */
+      gap: 0.6em; /* ボタンとテキストの間隔 */
       margin-bottom: 1.2em;
-      padding-left: 1.6em;
-      text-indent: -1.6em;
-      line-height: 1.7;
       font-size: 1em;
       word-break: break-word;
       text-align: left;
@@ -83,10 +82,11 @@
         max-width: 95%;
       }
       label {
-        padding-left: 1.2em;
-        text-indent: -1.2em;
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
         font-size: 0.95em;
-        line-height: 1.6;
+        margin-bottom: 1.2em;
         text-align: left;
       }
 
