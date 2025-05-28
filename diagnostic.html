@@ -57,20 +57,21 @@
     }
 
     label {
-      display: block;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6em;
       margin-bottom: 1.2em;
-      padding-left: 1.6em;
-      text-indent: -1.6em;
       line-height: 1.7;
       font-size: 1em;
       word-break: break-word;
       text-align: left;
+      flex-wrap: wrap;
     }
 
     input[type="radio"] {
-      vertical-align: middle;
-      margin-right: 0.4em;
+      margin-top: 0.3em;
       transform: scale(1.2); /* ラジオボタン拡大 */
+      flex-shrink: 0;
     }
 
     /* モバイル調整 */
@@ -83,14 +84,15 @@
         max-width: 95%;
       }
       label {
-        padding-left: 1.2em;
-        text-indent: -1.2em;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6em;
         font-size: 0.95em;
         line-height: 1.6;
         text-align: left;
+        flex-wrap: wrap;
       }
-
-      
+ 
       h1 {
         font-size: 6vw; /* スマホ横幅に比例して調整 */
         margin-bottom: 0.5em;
@@ -99,8 +101,9 @@
       }
       
       input[type="radio"] {
-        transform: scale(1.1); /* モバイルでは少し控えめに */
-        margin-right: 0.3em;
+        margin-top: 0.3em;
+        transform: scale(1.1); /* モバイルは少し小さめ */
+        flex-shrink: 0;
       }
       
       p {
