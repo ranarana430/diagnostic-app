@@ -98,6 +98,15 @@
       transform: scale(1.2); /* ラジオボタン拡大 */
     }
 
+    .button-group {
+      text-align: center;
+      margin-top: 1em;
+    }
+
+    .button-group button {
+      margin: 0.5em;
+    }
+
     /* モバイル調整 */
     @media (max-width: 480px) {
       #app {
@@ -150,6 +159,15 @@
 
       .question-text {
         font-size: 4.5vw;
+      }
+
+      .button-group {
+      text-align: center;
+      margin-top: 1em;
+      }
+      
+      .button-group button {
+        margin: 0.5em;
       }
     }
   </style>
@@ -331,10 +349,11 @@
       }
 
       html += `</form>
-      <br><button onclick="next()">次へ</button>
-      <br><button onclick="showTop()">診断TOPへ戻る</button>
-      <br><button onclick="location.href='index.html'">TOPへ戻る</button>`;
-      
+        <div class="button-group">
+          <br><button onclick="next()">次へ</button>
+          <br><button onclick="showTop()">診断TOPへ戻る</button>
+          <br><button onclick="location.href='index.html'">TOPへ戻る</button>`;
+        </div>`;
       document.getElementById('app').innerHTML = html;
     }
 
