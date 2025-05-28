@@ -432,10 +432,13 @@
     function showResult() {
       const sorted = Object.entries(score).sort((a, b) => b[1] - a[1]);
       const result = sorted[0][0];
+      const description = characterDescriptions[result];
+      
 
       document.getElementById('app').innerHTML = `
         <h2>診断結果</h2>
         <p>あなたのタイプは「${result}」です！</p>
+        <p>${description}</p>
         <br>
         <button onclick="showTop()">もう一度遊ぶ</button>
         <br>
