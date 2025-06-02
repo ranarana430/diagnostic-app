@@ -696,8 +696,10 @@
           <h2 class="question-text">${q.text}</h2>
           <form id="form">`;
 
-      for (let key in q.choices) {
-        html += `<label><input type="radio" name="answer" value="${key}"> ${q.choices[key]}</label>`;
+      // 選択肢をシャッフルして表示
+      const shuffledChoices = Object.entries(q.choices).sort(() => Math.random() - 0.5);
+      for (let [key, value] of shuffledChoices) {
+        html += `<label><input type="radio" name="answer" value="${key}"> ${value}</label>`;
       }
 
       html += `</form>`;
